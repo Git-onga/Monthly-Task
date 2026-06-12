@@ -682,7 +682,7 @@ export default function MapPage({ onBack, onEnterRoom, onFinale, unlockedCount }
 
   // Update global page background based on hover or active room
   const currentBgDoor = hoveredDoorId ? ALL_DOORS.find(d => d.id === hoveredDoorId) : activeDoorBackground;
-  const pageBackground = getDoorBackground(currentBgDoor);
+  const pageBackground = getDoorBackground(currentBgDoor ?? null);
 
   useEffect(() => {
     if (containerRef.current) {

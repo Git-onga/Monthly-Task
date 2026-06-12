@@ -157,7 +157,7 @@ export default function RoomPage({ doorId, onBack, onOpenBook, showUnlockButton,
   const door = ALL_DOORS.find(d => d.id === doorId);
   const [flameColor, setFlameColor] = useState(door?.glowColor || '#d4af37');
   const [candleState, setCandleState] = useState<'lit' | 'extinguishing' | 'out'>('lit');
-  const [factIndex, setFactIndex] = useState(0);
+  const [, setFactIndex] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
 
