@@ -32,30 +32,30 @@ export const ALL_DOORS: Door[] = [
     glowColor: '#8b6cf7', doorImg: '/door.png', tintColor: 'rgba(14,6,46,0.70)', nodeLabel: 'I',
     roomTitle: 'The Hall of Astronomy', roomDesc: 'Celestial globes hum with orichalcum. The astrolabe of Hypatia still turns.',
     books: [
+      // Book 1: Resume & Cover Letter Writing
       {
-        id: 'solar-system', spineTitle: 'Solar System', spineColor: '#4a3090', coverColor: '#1a0a40',
+        id: 'resume-writing', spineTitle: 'Resume & Cover Letter Writing', spineColor: '#4a3090', coverColor: '#1a0a40',
         pages: [
-          { title: 'Our Star — The Sun', learnt: '', taught: 'The Sun is a G-type main-sequence star about 4.6 billion years old. It contains 99.86% of the solar system\'s mass. Its core temperature reaches 15 million °C, fusing 600 million tonnes of hydrogen into helium every second. Its light takes 8 minutes 20 seconds to reach Earth.' },
-          { title: 'The Eight Planets', learnt: '', taught: 'Four rocky inner planets (Mercury, Venus, Earth, Mars) and four gas/ice giants (Jupiter, Saturn, Uranus, Neptune). Jupiter\'s Great Red Spot is a storm that has raged for over 350 years. Saturn\'s rings are mostly water ice, 10 metres thick but 280,000 km wide.' },
-          { title: 'Comets & Asteroids', learnt: '', taught: 'Comets are frozen relics from the outer solar system — when they approach the Sun their ice sublimates, forming a glowing coma and twin tails (dust and ion). Halley\'s Comet returns every 75 years. The asteroid belt between Mars and Jupiter contains millions of rocky bodies; Ceres, the largest, is classed as a dwarf planet.' },
-          { title: 'Meteor Showers & Space Weather', learnt: '', taught: 'Meteor showers occur when Earth passes through debris trails left by comets. The Perseids peak in August with up to 100 meteors per hour. Space weather — solar flares, coronal mass ejections — can disrupt satellites, power grids, and GPS systems. Auroras are the visible glow of energised particles striking the atmosphere near the poles.' },
+          { title: 'Resume Writing', learnt: 'Resume is tailored to a job position. Chromological Format goes backwords in time. Functional is better suited for graduating students. Always check for grammar and formatting errors. Use action verbs to highlight your skills. Guantify and qualify skills', taught: 'What is Resume. The standard format for writing Resume both Chronological and Functional. Tips' },
+          { title: 'Cover Letter Writing', learnt: 'Research the organization mission, vision and values. The cover letter must be customized for the specific company, cover two or three key requirements from the job advertisement', taught: 'Basic cover letter format. ' },
+          { title: 'Recommendation Letter Writing', learnt: '', taught: '' },
         ]
       },
+
+      // Book 2: How to Learn 
       {
-        id: 'stars', spineTitle: 'Stars & Life', spineColor: '#3a2080', coverColor: '#0e0630',
+        id: 'learning', spineTitle: 'How to Learn', spineColor: '#3a2080', coverColor: '#0e0630',
         pages: [
-          { title: 'Stellar Life Cycles', learnt: '', taught: 'Stars begin in nebulae. A star\'s mass determines its fate: low-mass stars become white dwarfs, massive stars explode as supernovae. Our Sun will swell into a red giant in ~5 billion years before shedding its outer layers as a planetary nebula.' },
-          { title: 'Galaxies & the Universe', learnt: '', taught: 'The observable universe contains ~2 trillion galaxies. Our Milky Way is a barred spiral, 100,000 light-years across, containing 200–400 billion stars. The universe is 13.8 billion years old and is expanding — every galaxy is moving away from every other.' },
-          { title: 'Dark Matter & Dark Energy', learnt: '', taught: 'Only 5% of the universe is ordinary matter. Dark matter (27%) holds galaxies together through gravity but emits no light. Dark energy (68%) is driving the accelerating expansion of space itself. Both remain undetected directly — their existence inferred from their gravitational effects.' },
+          { title: 'How to Learn', learnt: 'Two forms of learning, focused and diffuse. Focused Model requires concentration while Diffused is in a relaxed environment.', taught: 'Learning techniques, Learning models' },
         ]
       },
+
+      // Book 3: Git & GitHub
       {
-        id: 'navigation', spineTitle: 'Navigation', spineColor: '#5a3a9a', coverColor: '#180848',
+        id: 'version-control', spineTitle: 'Version Control', spineColor: '#5a3a9a', coverColor: '#180848',
         pages: [
-          { title: 'Celestial Navigation', learnt: '', taught: 'For millennia sailors used the stars to cross oceans. Polaris sits almost directly above Earth\'s north pole. The Southern Cross guides southern hemisphere navigators. Sextants measure the angle between stars and the horizon to calculate latitude.' },
-          { title: 'The Telescope Age', learnt: '', taught: 'Galileo\'s 1609 telescope revealed Jupiter\'s moons, proving not everything orbited Earth. Today the James Webb Space Telescope peers back 13.6 billion years, capturing infrared light from the first galaxies formed after the Big Bang.' },
-          { title: 'Modern Space Observatories', learnt: '', taught: 'The Hubble Space Telescope, orbiting at 547 km, has produced over 1.5 million observations. The James Webb (2021) captures infrared light in exquisite detail. The Vera Rubin Observatory will survey the entire sky every three nights, detecting transients and generating 15 TB of data per day.' },
-        ]
+          { title: 'Git & GitHub', learnt: 'Created by Linus Torvald in 2005.', taught: 'For millennia sailors used the stars to cross oceans. Polaris sits almost directly above Earth\'s north pole. The Southern Cross guides southern hemisphere navigators. Sextants measure the angle between stars and the horizon to calculate latitude.' },
+          ]
       },
     ],
   },
