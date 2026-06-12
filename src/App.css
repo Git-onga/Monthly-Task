@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+    user-select: none; /* improves mystical feel, but text selectable for readability */
+}
+
+body {
+    font-family: 'Cinema', 'Segoe UI', 'Cinzel', 'Georgia', serif;
+    background-color: #0d0a1a;
+    color: #f2e6c9;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+
+
+/* main content layer */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+}
+
+/* mystical header with map ornament */
+.library-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    border-bottom: 2px solid rgba(218, 165, 32, 0.5);
+    padding-bottom: 2rem;
+    backdrop-filter: blur(2px);
+}
+
+.library-header h1 {
+    font-size: 3.3rem;
+    letter-spacing: 6px;
+    text-shadow: 0 0 12px #d4af37, 0 0 25px #7a5c2e;
+    font-weight: 500;
+    background: linear-gradient(135deg, #f5e7c8, #c9a96b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.library-header p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    font-style: italic;
+    text-shadow: 1px 1px 0 #1a0f2e;
+}
+
+.map-subtle {
+    font-size: 0.9rem;
+    font-family: monospace;
+    background: rgba(0,0,0,0.4);
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 40px;
+    letter-spacing: 2px;
+}
+
+/* SECTION fading effect (scroll reveal) */
+.section {
+    background: rgba(15, 12, 28, 0.7);
+    backdrop-filter: blur(3px);
+    border-radius: 48px 24px 48px 24px;
+    margin-bottom: 5rem;
+    padding: 2rem 2rem 2rem 2rem;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(218, 165, 32, 0.1);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* door styling — each section contains a magical door */
+.door-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.magic-door {
+    background: linear-gradient(145deg, #5a3e2b, #2f2419);
+    width: 100%;
+    max-width: 480px;
+    border-radius: 32px 12px 32px 12px;
+    padding: 1.5rem 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 20px 30px -10px black, inset 0 1px 3px rgba(255,215,130,0.6);
+    transition: all 0.4s ease;
+    border-left: 6px solid #c9a03d;
+    border-bottom: 3px solid #7a5a2a;
+    text-align: center;
+}
+
+.magic-door:hover {
+    transform: scale(1.01) translateY(-5px);
+    box-shadow: 0 25px 35px -8px black;
+    border-left-color: #f3c26b;
+}
+
+.door-title {
+    font-size: 1.9rem;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    color: #fbefc7;
+    text-shadow: 0 2px 5px #2f1e0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.door-title .rune-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 4px gold);
+}
+
+.door-handle {
+    background: radial-gradient(circle, #b8860b, #684e1a);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 12px 0 6px;
+    box-shadow: 0 2px 6px black;
+    transition: all 0.2s;
+}
+
+.door-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s cubic-bezier(0.33, 1, 0.68, 1), margin 0.3s;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 28px;
+    margin-top: 0;
+    color: #ffefcf;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.5;
+    backdrop-filter: blur(2px);
+}
+
+.door-description p {
+    padding: 1rem 1.3rem;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.3px;
+}
+
+.magic-door.open .door-description {
+    max-height: 280px;
+    margin-top: 1.2rem;
+    border-top: 1px solid #e2b65c;
+}
+
+.magic-door.open .door-handle {
+    background: radial-gradient(circle, #e3ac42, #a0712a);
+    box-shadow: 0 0 8px gold;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ddc48e;
+    font-variant: small-caps;
+}
+
+/* decorative extra map elements */
+.parchment-corner {
+    position: relative;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    border-top: 1px dashed #8b7943;
+    padding-top: 2rem;
+}
+
+@media (max-width: 700px) {
+    .library-header h1 { font-size: 2.2rem; letter-spacing: 3px; }
+    .magic-door { max-width: 100%; padding: 1rem; }
+    .door-title { font-size: 1.4rem; }
+    .section { padding: 1.2rem; }
+}
+
+/* runic glow animation */
+@keyframes fadePulse {
+    0% { text-shadow: 0 0 2px #f3b33d; }
+    100% { text-shadow: 0 0 12px #f7d96b; }
+}

@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <defs>
+    <radialGradient id="bes-bg" cx="30%" cy="70%" r="80%">
+      <stop offset="0%" stop-color="#0a2010"/>
+      <stop offset="50%" stop-color="#051408"/>
+      <stop offset="100%" stop-color="#020a04"/>
+    </radialGradient>
+    <radialGradient id="bes-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#27ae60" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#27ae60" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="bes-glow-f">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bes-blur"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="bes-soft"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="560" fill="url(#bes-bg)"/>
+
+  <!-- Ambient bottom glow -->
+  <ellipse cx="200" cy="500" rx="200" ry="80" fill="url(#bes-glow)" filter="url(#bes-blur)"/>
+
+  <!-- Forest floor texture -->
+  <path d="M0,500 Q60,488 120,495 Q200,504 280,492 Q340,484 400,494 L400,560 L0,560 Z"
+        fill="#041008" opacity="0.9"/>
+
+  <!-- Background trees -->
+  <g opacity="0.25" fill="#0a2010">
+    <rect x="20"  y="200" width="14" height="300"/>
+    <path d="M-5,210 Q27,100 59,210 Z"/>
+    <path d="M5,250 Q27,150 49,250 Z"/>
+    <rect x="365" y="220" width="14" height="280"/>
+    <path d="M340,230 Q372,120 404,230 Z"/>
+    <path d="M350,265" />
+  </g>
+
+  <!-- Gnarled tree trunks flanking door -->
+  <g fill="#0a1a08" stroke="#143a10" stroke-width="2" opacity="0.8">
+    <!-- Left trunk -->
+    <path d="M50,490 Q45,400 52,320 Q48,260 55,200 Q62,160 70,200 Q75,260 68,320 Q72,400 68,490 Z"/>
+    <!-- Left roots -->
+    <path d="M50,490 Q30,500 20,490 Q35,485 48,490"/>
+    <path d="M68,490 Q58,500 50,495 Q60,488 68,490"/>
+    <!-- Left branch -->
+    <path d="M58,260 Q80,240 95,255 Q85,270 60,268"/>
+    <path d="M54,290 Q40,272 28,278 Q34,292 54,290"/>
+    <!-- Right trunk -->
+    <path d="M350,490 Q355,400 348,320 Q352,260 345,200 Q338,160 330,200 Q325,260 332,320 Q328,400 332,490 Z"/>
+    <path d="M350,490 Q370,500 380,490 Q365,485 352,490"/>
+    <path d="M332,490 Q342,500 350,495 Q340,488 332,490"/>
+    <!-- Right branch -->
+    <path d="M342,260 Q320,240 305,255 Q315,270 340,268"/>
+    <path d="M346,290 Q360,272 372,278 Q366,292 346,290"/>
+  </g>
+
+  <!-- Leaves / foliage -->
+  <g fill="#0d2a0e" opacity="0.5">
+    <ellipse cx="74"  cy="188" rx="28" ry="18"/>
+    <ellipse cx="50"  cy="205" rx="20" ry="14"/>
+    <ellipse cx="90"  cy="200" rx="18" ry="12"/>
+    <ellipse cx="330" cy="188" rx="28" ry="18"/>
+    <ellipse cx="355" cy="205" rx="20" ry="14"/>
+    <ellipse cx="312" cy="200" rx="18" ry="12"/>
+  </g>
+
+  <!-- Door frame — ivy-covered stone -->
+  <path d="M78,490 L78,178 Q78,100 200,100 Q322,100 322,178 L322,490 Z"
+        fill="#0a1c08" stroke="#1a4a18" stroke-width="3"/>
+  <!-- Stone frame outer -->
+  <path d="M66,490 L66,175 Q66,86 200,86 Q334,86 334,175 L334,490"
+        fill="none" stroke="#2a6a28" stroke-width="3.5"/>
+
+  <!-- Stone block texture on frame -->
+  <g fill="none" stroke="#143a12" stroke-width="1" opacity="0.5">
+    <rect x="66" y="290" width="12" height="32"/>
+    <rect x="66" y="326" width="12" height="32"/>
+    <rect x="66" y="362" width="12" height="32"/>
+    <rect x="66" y="398" width="12" height="32"/>
+    <rect x="66" y="434" width="12" height="32"/>
+    <rect x="322" y="290" width="12" height="32"/>
+    <rect x="322" y="326" width="12" height="32"/>
+    <rect x="322" y="362" width="12" height="32"/>
+    <rect x="322" y="398" width="12" height="32"/>
+    <rect x="322" y="434" width="12" height="32"/>
+  </g>
+
+  <!-- Door arch -->
+  <path d="M78,178 Q78,100 200,100 Q322,100 322,178 Z" fill="#0a1c08"/>
+  <path d="M93,180 Q93,115 200,115 Q307,115 307,180 Z"
+        fill="#27ae60" opacity="0.07" filter="url(#bes-blur)"/>
+
+  <!-- Door planks — ancient dark wood -->
+  <rect x="78" y="178" width="244" height="312" rx="2" fill="#0d1e0b"/>
+  <g fill="#091508" stroke="#122010" stroke-width="1">
+    <rect x="78"  y="195" width="244" height="7" opacity="0.8"/>
+    <rect x="78"  y="228" width="244" height="7" opacity="0.7"/>
+    <rect x="78"  y="261" width="244" height="7" opacity="0.8"/>
+    <rect x="78"  y="294" width="244" height="7" opacity="0.7"/>
+    <rect x="78"  y="327" width="244" height="7" opacity="0.8"/>
+    <rect x="78"  y="360" width="244" height="7" opacity="0.7"/>
+    <rect x="78"  y="393" width="244" height="7" opacity="0.8"/>
+    <rect x="78"  y="426" width="244" height="7" opacity="0.6"/>
+    <rect x="78"  y="459" width="244" height="7" opacity="0.7"/>
+  </g>
+  <rect x="197" y="178" width="6" height="312" fill="#091508" opacity="0.7"/>
+
+  <!-- Iron cross banding -->
+  <line x1="78"  y1="310" x2="322" y2="310" stroke="#0a1408" stroke-width="4" opacity="0.6"/>
+  <g fill="#1a3018">
+    <circle cx="100" cy="310" r="6"/> <circle cx="300" cy="310" r="6"/>
+    <circle cx="200" cy="310" r="6"/>
+  </g>
+
+  <!-- Unicorn / mythic beast carved in door -->
+  <g transform="translate(200,380)" filter="url(#bes-glow-f)" opacity="0.7">
+    <!-- Body -->
+    <path d="M-42,18 Q-40,-8 -20,-18 Q0,-24 20,-18 Q40,-8 42,18 L42,30 L-42,30 Z"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1.5"/>
+    <!-- Neck + head -->
+    <path d="M-10,-18 Q-12,-34 -4,-40 Q4,-46 10,-40 Q16,-34 12,-18"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1.5"/>
+    <!-- Spiral horn -->
+    <path d="M3,-40 L6,-62 M4,-48 L8,-46 M5,-54 L8,-52 M5,-58 L7,-57"
+          stroke="#27ae60" stroke-width="1.5" fill="none"/>
+    <!-- Eye -->
+    <circle cx="2" cy="-36" r="2.5" fill="#27ae60" opacity="0.9"/>
+    <!-- Mane -->
+    <path d="M-6,-38 Q-14,-30 -16,-20 M-4,-36 Q-8,-26 -10,-18"
+          fill="none" stroke="#27ae60" stroke-width="1" opacity="0.6"/>
+    <!-- Tail -->
+    <path d="M42,5 Q56,0 58,12 Q54,22 42,18"
+          fill="none" stroke="#27ae60" stroke-width="1.5"/>
+    <!-- Legs -->
+    <line x1="-28" y1="30" x2="-28" y2="50" stroke="#27ae60" stroke-width="2"/>
+    <line x1="-12" y1="30" x2="-12" y2="50" stroke="#27ae60" stroke-width="2"/>
+    <line x1="12"  y1="30" x2="12"  y2="50" stroke="#27ae60" stroke-width="2"/>
+    <line x1="28"  y1="30" x2="28"  y2="50" stroke="#27ae60" stroke-width="2"/>
+    <!-- Wings suggestion -->
+    <path d="M-20,-5 Q-40,-20 -52,-10 Q-42,0 -20,5"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1" opacity="0.7"/>
+    <path d="M20,-5 Q40,-20 52,-10 Q42,0 20,5"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1" opacity="0.7"/>
+  </g>
+
+  <!-- Griffin in upper panel -->
+  <g transform="translate(200,240)" filter="url(#bes-glow-f)" opacity="0.5">
+    <!-- Body -->
+    <path d="M-25,15 Q-22,-5 0,-10 Q22,-5 25,15 L15,25 L-15,25 Z"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1.2"/>
+    <!-- Eagle head -->
+    <path d="M-10,-10 Q-8,-22 0,-26 Q8,-22 10,-10"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1.2"/>
+    <!-- Beak -->
+    <path d="M-3,-20 Q0,-28 3,-20" fill="none" stroke="#27ae60" stroke-width="1.5"/>
+    <!-- Wings -->
+    <path d="M-22,0 Q-36,-12 -38,-5 Q-32,8 -22,8"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1"/>
+    <path d="M22,0 Q36,-12 38,-5 Q32,8 22,8"
+          fill="#0d2a10" stroke="#27ae60" stroke-width="1"/>
+  </g>
+
+  <!-- Ivy vines climbing the door frame -->
+  <g fill="none" stroke="#1a4a18" stroke-width="1.5" opacity="0.5">
+    <path d="M66,350 Q56,330 63,310 Q56,290 66,270"/>
+    <path d="M63,310 Q73,306 68,296"/>
+    <path d="M60,340 Q50,336 52,326"/>
+    <path d="M334,360 Q344,340 337,318 Q346,295 334,275"/>
+    <path d="M337,318 Q327,312 332,302"/>
+  </g>
+  <!-- Ivy leaves -->
+  <g fill="#1a4a18" opacity="0.5">
+    <ellipse cx="58" cy="296" rx="6" ry="4" transform="rotate(-30,58,296)"/>
+    <ellipse cx="50" cy="326" rx="5" ry="3" transform="rotate(20,50,326)"/>
+    <ellipse cx="327" cy="302" rx="6" ry="4" transform="rotate(30,327,302)"/>
+    <ellipse cx="342" cy="338" rx="5" ry="3" transform="rotate(-15,342,338)"/>
+  </g>
+
+  <!-- Door knocker — beast paw print -->
+  <g transform="translate(200,450)" filter="url(#bes-glow-f)">
+    <circle r="14" fill="#0a1c08" stroke="#27ae60" stroke-width="2"/>
+    <circle r="7"  fill="#27ae60" opacity="0.7"/>
+    <circle r="3"  fill="#a8f0a8"/>
+  </g>
+
+  <!-- Keystone -->
+  <path d="M187,100 L200,84 L213,100 Z" fill="#0d2a10" stroke="#27ae60" stroke-width="1.5"/>
+  <circle cx="200" cy="80" r="7" fill="#27ae60" opacity="0.7" filter="url(#bes-glow-f)"/>
+
+  <!-- Glowing eyes peering from forest background -->
+  <g filter="url(#bes-glow-f)" opacity="0.4">
+    <circle cx="22"  cy="320" r="3.5" fill="#27ae60"/>
+    <circle cx="34"  cy="320" r="3.5" fill="#27ae60"/>
+    <circle cx="362" cy="340" r="3"   fill="#27ae60"/>
+    <circle cx="374" cy="340" r="3"   fill="#27ae60"/>
+    <circle cx="18"  cy="380" r="2.5" fill="#7fff7a"/>
+    <circle cx="28"  cy="378" r="2.5" fill="#7fff7a"/>
+  </g>
+</svg>

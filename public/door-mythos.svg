@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <defs>
+    <radialGradient id="myt-bg" cx="50%" cy="60%" r="80%">
+      <stop offset="0%" stop-color="#2a1400"/>
+      <stop offset="55%" stop-color="#1a0c00"/>
+      <stop offset="100%" stop-color="#0d0600"/>
+    </radialGradient>
+    <radialGradient id="myt-fire" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#e67e22" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#c0392b" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#e67e22" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="myt-glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="myt-blur">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="560" fill="url(#myt-bg)"/>
+
+  <!-- Fire glow from below -->
+  <ellipse cx="200" cy="500" rx="200" ry="100" fill="url(#myt-fire)" filter="url(#myt-blur)"/>
+
+  <!-- Sand / desert floor -->
+  <path d="M0,490 Q100,478 200,485 Q300,492 400,480 L400,560 L0,560 Z" fill="#1a0e04" opacity="0.8"/>
+  <path d="M0,500 Q80,492 160,497 Q280,504 400,495 L400,560 L0,560 Z" fill="#120a02" opacity="0.6"/>
+
+  <!-- Columns / pillars -->
+  <g fill="#1a1008" stroke="#3a2010" stroke-width="2">
+    <!-- Left column -->
+    <rect x="44" y="180" width="28" height="310"/>
+    <!-- Left capital -->
+    <path d="M36,180 Q58,165 80,180" fill="#2a1808" stroke="#5a3010" stroke-width="1.5"/>
+    <rect x="36" y="176" width="44" height="10" rx="2" fill="#2a1808"/>
+    <!-- Left base -->
+    <rect x="38" y="480" width="40" height="14" rx="2" fill="#2a1808"/>
+
+    <!-- Right column -->
+    <rect x="328" y="180" width="28" height="310"/>
+    <path d="M320,180 Q342,165 364,180" fill="#2a1808" stroke="#5a3010" stroke-width="1.5"/>
+    <rect x="320" y="176" width="44" height="10" rx="2" fill="#2a1808"/>
+    <rect x="322" y="480" width="40" height="14" rx="2" fill="#2a1808"/>
+  </g>
+
+  <!-- Pediment / triangular top -->
+  <path d="M36,176 L200,60 L364,176 Z" fill="#150e05" stroke="#4a2a10" stroke-width="2"/>
+  <path d="M52,176 L200,76 L348,176 Z" fill="#1a1208" stroke="#3a2008" stroke-width="1"/>
+
+  <!-- Dragon relief carved in pediment -->
+  <g transform="translate(200,128)" opacity="0.6" fill="none" stroke="#e67e22" stroke-width="1.5">
+    <path d="M-40,0 Q-25,-20 -10,-15 Q0,-25 10,-15 Q25,-20 40,0"/>
+    <path d="M-30,5 Q-20,15 0,10 Q20,15 30,5"/>
+    <!-- Wings -->
+    <path d="M-10,-15 Q-30,-35 -45,-20 Q-35,-8 -10,-12"/>
+    <path d="M10,-15 Q30,-35 45,-20 Q35,-8 10,-12"/>
+    <!-- Eye -->
+    <circle cx="-18" cy="-8" r="3" fill="#e67e22" opacity="0.8"/>
+    <circle cx="18"  cy="-8" r="3" fill="#e67e22" opacity="0.8"/>
+  </g>
+
+  <!-- Door frame -->
+  <path d="M80,490 L80,200 Q80,130 200,130 Q320,130 320,200 L320,490 Z"
+        fill="#1a0e04" stroke="#4a2a0a" stroke-width="3"/>
+
+  <!-- Door arch inner glow -->
+  <path d="M80,200 Q80,130 200,130 Q320,130 320,200 Z"
+        fill="#3a1a08" opacity="0.4"/>
+  <path d="M95,202 Q95,145 200,145 Q305,145 305,202 Z"
+        fill="#e67e22" opacity="0.08" filter="url(#myt-blur)"/>
+
+  <!-- Door planks — ancient oak -->
+  <rect x="80" y="200" width="240" height="290" rx="2" fill="#1e1006"/>
+  <g fill="#150d04" stroke="#2a1508" stroke-width="1">
+    <rect x="80"  y="215" width="240" height="7" opacity="0.8"/>
+    <rect x="80"  y="250" width="240" height="7" opacity="0.7"/>
+    <rect x="80"  y="285" width="240" height="7" opacity="0.8"/>
+    <rect x="80"  y="320" width="240" height="7" opacity="0.7"/>
+    <rect x="80"  y="355" width="240" height="7" opacity="0.8"/>
+    <rect x="80"  y="390" width="240" height="7" opacity="0.7"/>
+    <rect x="80"  y="425" width="240" height="7" opacity="0.8"/>
+    <rect x="80"  y="460" width="240" height="7" opacity="0.6"/>
+  </g>
+  <rect x="197" y="200" width="6" height="290" fill="#150d04" opacity="0.7"/>
+
+  <!-- Iron banding straps across door -->
+  <g fill="#0a0804" stroke="#2a1a08" stroke-width="3" opacity="0.6">
+    <line x1="80"  y1="270" x2="320" y2="270"/>
+    <line x1="80"  y1="380" x2="320" y2="380"/>
+  </g>
+  <!-- Iron strap bolts -->
+  <g fill="#3a2010">
+    <circle cx="100" cy="270" r="5"/> <circle cx="300" cy="270" r="5"/>
+    <circle cx="100" cy="380" r="5"/> <circle cx="300" cy="380" r="5"/>
+    <circle cx="200" cy="270" r="5"/> <circle cx="200" cy="380" r="5"/>
+  </g>
+
+  <!-- Sphinx relief carved on door -->
+  <g transform="translate(200,315)" filter="url(#myt-glow)" opacity="0.65">
+    <!-- body -->
+    <path d="M-40,20 Q-40,-10 -20,-20 Q0,-30 20,-20 Q40,-10 40,20 L40,35 L-40,35 Z"
+          fill="#2a1808" stroke="#e67e22" stroke-width="1.2"/>
+    <!-- head -->
+    <circle cx="0" cy="-28" r="18" fill="#2a1808" stroke="#e67e22" stroke-width="1.2"/>
+    <!-- headdress -->
+    <path d="M-14,-18 L-20,10 M14,-18 L20,10" stroke="#e67e22" stroke-width="1" fill="none"/>
+    <!-- face -->
+    <line x1="-7" y1="-30" x2="-7" y2="-26" stroke="#e67e22" stroke-width="1"/>
+    <line x1="7"  y1="-30" x2="7"  y2="-26" stroke="#e67e22" stroke-width="1"/>
+    <path d="M-5,-22 Q0,-20 5,-22" stroke="#e67e22" stroke-width="1" fill="none"/>
+    <!-- wings -->
+    <path d="M-40,0 Q-55,-20 -50,-35 Q-38,-25 -35,-5"
+          fill="#2a1808" stroke="#e67e22" stroke-width="1"/>
+    <path d="M40,0 Q55,-20 50,-35 Q38,-25 35,-5"
+          fill="#2a1808" stroke="#e67e22" stroke-width="1"/>
+  </g>
+
+  <!-- Torches on columns -->
+  <g filter="url(#myt-glow)">
+    <!-- Left torch -->
+    <rect x="54" y="210" width="8" height="22" rx="2" fill="#3a2010"/>
+    <ellipse cx="58" cy="208" rx="7" ry="10" fill="#e67e22" opacity="0.8"/>
+    <ellipse cx="58" cy="205" rx="4" ry="7"  fill="#f39c12" opacity="0.9"/>
+    <ellipse cx="58" cy="202" rx="2" ry="5"  fill="#fff8e0" opacity="0.6"/>
+    <!-- Right torch -->
+    <rect x="338" y="210" width="8" height="22" rx="2" fill="#3a2010"/>
+    <ellipse cx="342" cy="208" rx="7" ry="10" fill="#e67e22" opacity="0.8"/>
+    <ellipse cx="342" cy="205" rx="4" ry="7"  fill="#f39c12" opacity="0.9"/>
+    <ellipse cx="342" cy="202" rx="2" ry="5"  fill="#fff8e0" opacity="0.6"/>
+  </g>
+
+  <!-- Door knocker — ring with dragon head -->
+  <g transform="translate(200,435)" filter="url(#myt-glow)">
+    <circle r="14" fill="#1a0e04" stroke="#e67e22" stroke-width="2" opacity="0.9"/>
+    <circle r="7"  fill="#e67e22" opacity="0.7"/>
+    <circle r="3"  fill="#f39c12"/>
+  </g>
+
+  <!-- Keystone at top of arch -->
+  <path d="M188,130 L200,114 L212,130 Z" fill="#2a1808" stroke="#e67e22" stroke-width="1.5"/>
+  <circle cx="200" cy="110" r="7" fill="#e67e22" opacity="0.7" filter="url(#myt-glow)"/>
+</svg>

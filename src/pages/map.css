@@ -1,0 +1,778 @@
+/* ═══════════════════════════════════════════════════════════════
+   MAPPA ALEXANDRIAE  —  Continuous Path Map Layout
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Base Reset ── */
+.map-root *, .map-root *::before, .map-root *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+}
+
+/* ── Root Container ── */
+.map-root {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%,  #160830 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 10% 60%,  #0a1a2e 0%, transparent 55%),
+    radial-gradient(ellipse 50% 30% at 90% 80%,  #1a0a20 0%, transparent 50%),
+    linear-gradient(180deg, #06030e 0%, #0b0818 50%, #080512 100%);
+  color: #f2e6c9;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient backdrop shimmer */
+.map-ambient {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(100,70,200,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(210,160,40,0.04)  0%, transparent 50%);
+}
+
+.map-content {
+  position: relative;
+  z-index: 2;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.2rem 6rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
+.map-header {
+  text-align: center;
+  padding: 3.5rem 1rem 3rem;
+  margin-bottom: 2rem;
+}
+
+.header-stars {
+  display: flex; justify-content: center; gap: 0.35rem;
+  flex-wrap: wrap; margin-bottom: 1.6rem;
+}
+.star-char {
+  color: #d4af37; font-size: 0.85rem; opacity: 0;
+  animation: starFade 3.5s ease-in-out infinite alternate;
+}
+@keyframes starFade {
+  0%   { opacity: 0.12; transform: scale(0.9); }
+  100% { opacity: 0.8;  transform: scale(1.1); }
+}
+
+.map-title {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 700; letter-spacing: 0.18em;
+  background: linear-gradient(135deg, #f5e7c8 0%, #d4af37 45%, #c9a96b 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px rgba(212,175,55,0.45));
+  margin-bottom: 0.9rem; line-height: 1.15;
+}
+.title-emblem {
+  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
+  animation: emblemPulse 4s ease-in-out infinite alternate;
+}
+@keyframes emblemPulse {
+  from { filter: drop-shadow(0 0 4px #d4af37); transform: scale(1); }
+  to   { filter: drop-shadow(0 0 14px #ffe890); transform: scale(1.06); }
+}
+
+.map-tagline {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  font-style: italic; color: #c8b88a; margin-bottom: 0.8rem;
+}
+.map-badge {
+  display: inline-block;
+  font-family: 'Courier New', monospace; font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(212,175,55,0.28);
+  border-radius: 40px; padding: 0.28rem 1.1rem;
+  color: #e8d5a3; margin-bottom: 1.8rem;
+}
+
+.header-divider {
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  font-size: 1.3rem; color: rgba(212,175,55,0.55);
+}
+.divider-line {
+  flex: 0 1 100px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+}
+.divider-glyph { opacity: 0.65; }
+
+/* ═══════════════════════════════════════════════════════════════
+   MAP START / END MARKERS
+   ═══════════════════════════════════════════════════════════════ */
+.map-start-marker,
+.map-end-marker {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 3;
+}
+
+.start-ring, .end-ring {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #2a1a50, #0d0820);
+  border: 2px solid rgba(212,175,55,0.55);
+  box-shadow: 0 0 18px rgba(212,175,55,0.3), inset 0 0 10px rgba(212,175,55,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  animation: markerPulse 3s ease-in-out infinite alternate;
+}
+@keyframes markerPulse {
+  from { box-shadow: 0 0 10px rgba(212,175,55,0.25); }
+  to   { box-shadow: 0 0 28px rgba(212,175,55,0.55); }
+}
+
+.start-label, .end-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  color: rgba(212,175,55,0.5);
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.start-stem, .end-stem {
+  width: 2.5px; height: 50px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.6), rgba(139, 108, 247, 0.3));
+}
+.end-stem {
+  width: 2.5px; height: 50px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.6));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAP JOURNEY PATH (8 stops connected on a single winding S-curve)
+   ═══════════════════════════════════════════════════════════════ */
+.map-journey-container {
+  position: relative;
+  width: 100%;
+}
+
+.wavy-svg-wrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.wavy-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Path reveal drawing effect */
+.wavy-path-anim {
+  animation: drawSpine 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes drawSpine {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Sparkle node entry */
+.wavy-node-anim {
+  opacity: 0;
+  animation: nodeGlowIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes nodeGlowIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 0.95; }
+}
+
+.map-cards-list {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Columns: [card] [wavy line spacer] [card] */
+.map-row {
+  display: grid;
+  /* grid-template-columns: 1fr 120px 1fr; */
+  align-items: flex-start;
+  width: 100%;
+}
+
+.map-spine-spacer {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+/* Left rows: card is first-child, aligned right toward spine */
+.map-row--left .map-card-slot:first-child { justify-self: end; padding-right: 1.8rem; }
+.map-row--left .map-card-slot:last-child  { display: none; }
+
+/* Right rows: card is last-child, aligned left toward spine */
+.map-row--right .map-card-slot:first-child { display: none; }
+.map-row--right .map-card-slot:last-child  { justify-self: start; padding-left: 1.8rem; }
+
+/* ── Scroll-Reveal Card Wrapper ── */
+.map-card-slot {
+  width: 100%;
+  max-width: 410px;
+  padding-bottom: 2.8rem;
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Left cards slide in from the left */
+.map-row--left .map-card-slot:first-child {
+  transform: translateX(-60px);
+}
+/* Right cards slide in from the right */
+.map-row--right .map-card-slot:last-child {
+  transform: translateX(60px);
+}
+
+/* Triggers when scrolled into view */
+.map-card-slot--visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.map-card-slot--empty { visibility: hidden; }
+
+/* ═══════════════════════════════════════════════════════════════
+   DOOR CARD DESIGN
+   ═══════════════════════════════════════════════════════════════ */
+.door-card {
+  position: relative;
+  width: 100%;
+  border-radius: 20px 8px 20px 8px;
+  overflow: hidden;
+  cursor: pointer; outline: none;
+  border: 1px solid rgba(212,175,55,0.2);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.7),
+    0 0 0 0 var(--glow, #d4af37);
+  transition:
+    transform 0.38s cubic-bezier(0.22,1,0.36,1),
+    box-shadow 0.38s ease,
+    border-color 0.38s ease;
+  padding: 0 0 1.2rem;
+}
+
+.door-card:hover,
+.door-card:focus-visible {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--glow, #d4af37);
+  box-shadow:
+    0 24px 50px rgba(0,0,0,0.85),
+    0 0 30px color-mix(in srgb, var(--glow, #d4af37) 45%, transparent 55%);
+}
+
+/* Per‑door pattern layer */
+.door-card-pattern {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-size: 24px 24px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Stronger glow for door cards on hover */
+.door-card:hover {
+  box-shadow: 0 0 30px var(--glow), 0 0 10px rgba(255, 215, 0, 0.5);
+  transform: translateY(-6px) scale(1.02);
+  transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Extra animation for floating orbs */
+.map-magic-orb {
+  position: fixed;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.3;
+  animation: floatOrb 12s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  100% { transform: translate(30px, -20px) scale(1.2); opacity: 0.4; }
+}
+
+/* Ensure the root container can have a dynamic background */
+.map-root {
+  transition: background 0.6s ease;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+/* ── Scene background ── */
+.door-scene {
+  position: absolute; inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  min-height: 230px;
+}
+
+.door-scene-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: saturate(0.7) brightness(0.8);
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+.door-card:hover .door-scene-img {
+  transform: scale(1.05);
+  filter: saturate(0.88) brightness(0.92);
+}
+
+.door-scene-tint {
+  position: absolute; inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+
+.door-scene-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.35) 35%,
+    rgba(0,0,0,0.75) 60%,
+    rgba(0,0,0,0.92) 100%
+  );
+}
+
+/* Content overlays */
+.door-stop-banner,
+.door-ornament,
+.door-header,
+.door-tag,
+.door-handle,
+.door-book-count,
+.door-cta {
+  position: relative; z-index: 2;
+}
+
+/* Banner */
+.door-stop-banner {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.8rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(212,175,55,0.9);
+  background: rgba(0,0,0,0.65);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 12px;
+  padding: 0.18rem 0.6rem;
+}
+
+/* Wing Ornament */
+.door-ornament {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 1.2rem 0.5rem;
+}
+.ornament-wing {
+  font-size: 1rem;
+  color: rgba(212,175,55,0.7);
+  filter: drop-shadow(0 0 3px gold);
+}
+.ornament-divider {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35), transparent);
+}
+
+/* Header Text */
+.door-header {
+  text-align: center; padding: 0.4rem 1.2rem 0.2rem;
+}
+.door-icon {
+  display: block; font-size: 2.8rem; margin-bottom: 0.3rem;
+  filter: drop-shadow(0 0 8px var(--glow, gold));
+  animation: doorIconFloat 3.5s ease-in-out infinite alternate;
+}
+@keyframes doorIconFloat {
+  from { transform: translateY(0);   filter: drop-shadow(0 0 4px var(--glow, gold)); }
+  to   { transform: translateY(-5px); filter: drop-shadow(0 0 15px var(--glow, gold)); }
+}
+.door-label {
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-weight: 700; letter-spacing: 0.16em;
+  color: #fbefc7; text-shadow: 0 2px 6px rgba(0,0,0,0.85);
+  font-family: 'Georgia', serif; margin-bottom: 0.2rem;
+}
+.door-subtitle {
+  font-size: 0.72rem; font-style: italic;
+  color: rgba(200,185,140,0.7); letter-spacing: 0.05em;
+}
+
+/* Tag Pill */
+.door-tag {
+  text-align: center; margin: 0.6rem auto 0;
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--glow, #c9a96b) 85%, #fff 15%);
+  border: 1px solid color-mix(in srgb, var(--glow, #c9a96b) 30%, transparent);
+  border-radius: 30px; padding: 0.18rem 0.75rem;
+  background: rgba(0,0,0,0.5);
+  position: relative; left: 50%; transform: translateX(-50%);
+}
+
+/* Gem handle */
+.door-handle {
+  display: flex; justify-content: center;
+  margin: 0.9rem 0 0.6rem;
+}
+.handle-ring {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--glow, #b8860b) 50%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--glow, #b8860b) 20%, transparent);
+  transition: box-shadow 0.3s;
+}
+.door-card:hover .handle-ring {
+  box-shadow: 0 0 16px var(--glow, gold);
+}
+.handle-gem {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%,
+    color-mix(in srgb, var(--glow, #b8860b) 90%, #fff 10%),
+    color-mix(in srgb, var(--glow, #684e1a) 60%, #000 40%)
+  );
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.door-card:hover .handle-gem {
+  transform: scale(1.12);
+  box-shadow: 0 0 10px var(--glow, gold), 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.door-book-count {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  color: color-mix(in srgb, var(--glow, #c9a96b) 75%, #fff 25%);
+  margin: 0.25rem 0 0;
+  opacity: 0.8;
+}
+
+.door-cta {
+  text-align: center; font-family: 'Courier New', monospace;
+  font-size: 0.65rem; letter-spacing: 0.2em;
+  color: rgba(212,175,55,0.45); margin-top: 0.8rem;
+  transition: color 0.3s;
+}
+.door-card:hover .door-cta { color: rgba(212,175,55,0.85); }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION & FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+.map-top-nav {
+  padding: 1.5rem 0 0;
+}
+.map-back-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 24px;
+  color: rgba(212,175,55,0.75);
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  padding: 0.4rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+.map-back-btn:hover {
+  background: rgba(212,175,55,0.1);
+  color: #d4af37;
+  border-color: rgba(212,175,55,0.6);
+  box-shadow: 0 0 12px rgba(212,175,55,0.25);
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: center;
+  margin: 3.5rem 0 2rem;
+}
+.chapter-nav-btn {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,175,55,0.45);
+  border-radius: 32px;
+  color: rgba(212,175,55,0.85);
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  padding: 0.75rem 2.5rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.chapter-nav-btn--finale {
+  border-color: rgba(212,175,55,0.75);
+  background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.02));
+  color: #d4af37;
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  box-shadow: 0 0 20px rgba(212,175,55,0.2);
+}
+.chapter-nav-btn--finale:hover {
+  background: rgba(212,175,55,0.2) !important;
+  box-shadow: 0 0 35px rgba(212,175,55,0.5) !important;
+  transform: translateY(-2px);
+}
+
+.map-footer {
+  text-align: center; margin-top: 4rem; padding-top: 2rem;
+  border-top: 1px dashed rgba(212,175,55,0.2);
+  font-size: 0.8rem; color: rgba(242,230,201,0.45);
+  letter-spacing: 0.05em;
+}
+.footer-runes {
+  display: flex; justify-content: center; gap: 1.1rem;
+  margin-bottom: 0.9rem; font-size: 1.2rem;
+}
+.footer-rune {
+  display: inline-block; color: rgba(212,175,55,0.35);
+  animation: footerRuneGlow 4s ease-in-out infinite alternate;
+}
+@keyframes footerRuneGlow {
+  from { opacity: 0.25; transform: scale(0.95); }
+  to   { opacity: 0.75; transform: scale(1.05); filter: drop-shadow(0 0 4px gold); }
+}
+.footer-sub {
+  font-family: 'Courier New', monospace;
+  font-size: 0.67rem; letter-spacing: 0.16em;
+  margin-top: 0.35rem; opacity: 0.45;
+}
+
+/* ── Fireflies drift ── */
+.firefly-field {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+}
+.firefly {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%; opacity: 0;
+  animation: fireflyDrift linear infinite;
+  box-shadow: 0 0 6px 2px currentColor;
+  filter: blur(0.5px);
+}
+@keyframes fireflyDrift {
+  0%   { opacity: 0;   transform: translate(0, 0) scale(1); }
+  15%  { opacity: 0.7; }
+  50%  { opacity: 0.4; transform: translate(30px, -40px) scale(1.2); }
+  75%  { opacity: 0.6; transform: translate(-20px, -70px) scale(0.8); }
+  90%  { opacity: 0.2; }
+  100% { opacity: 0;   transform: translate(10px, -100px) scale(1); }
+}
+
+/* ── Magic background Orbs ── */
+.map-magic-orb {
+  position: fixed; width: 360px; height: 360px; border-radius: 50%;
+  filter: blur(120px); opacity: 0.055; pointer-events: none; z-index: 1;
+  transform: translate(-50%, -50%);
+  animation: mapOrbDrift 20s ease-in-out infinite alternate;
+}
+@keyframes mapOrbDrift {
+  0%   { transform: translate(-50%,-50%) scale(1);    opacity: 0.05; }
+  50%  { transform: translate(-44%,-55%) scale(1.1);  opacity: 0.08; }
+  100% { transform: translate(-56%,-45%) scale(0.92); opacity: 0.055; }
+}
+
+.map-ground-fog {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 180px;
+  pointer-events: none; z-index: 1;
+  background: linear-gradient(0deg, rgba(6,3,14,0.65) 0%, rgba(6,3,14,0.3) 40%, transparent 100%);
+  filter: blur(6px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE LAYOUT
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Mobile / Tablet: collapse path to a single column with spine on left */
+@media (max-width: 750px) {
+  .map-row {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .map-row--left, .map-row--right {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+  }
+
+  .map-spine-spacer {
+    width: 40px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Move the wavy path wrapper to the left side */
+  .wavy-svg-wrap {
+    left: 20px;
+    transform: none;
+    width: 40px;
+  }
+
+  .map-row--left .map-card-slot:first-child,
+  .map-row--right .map-card-slot:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    padding-left: 0.8rem;
+    padding-right: 0;
+    justify-self: stretch;
+    max-width: 100%;
+  }
+
+  /* Left/Right slides both come from right on mobile */
+  .map-row--left .map-card-slot:first-child { transform: translateX(35px); }
+  .map-row--right .map-card-slot:last-child { transform: translateX(35px); }
+
+  .map-title { flex-direction: column; gap: 0.4rem; font-size: 1.6rem; }
+  
+  .start-ring, .end-ring {
+    width: 44px; height: 44px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOCKED DOOR — overlay & card state
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Prevent hover lift on locked cards */
+.door-card--locked {
+  cursor: not-allowed;
+  filter: saturate(0.2) brightness(0.7);
+}
+.door-card--locked:hover,
+.door-card--locked:focus-visible {
+  transform: none !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.7) !important;
+  border-color: rgba(80,80,100,0.3) !important;
+}
+
+/* Full-card frosted lock overlay */
+.door-lock-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.door-lock-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(4, 2, 14, 0.82) 0%,
+    rgba(8, 6, 22, 0.88) 60%,
+    rgba(2, 2, 10, 0.92) 100%
+  );
+  backdrop-filter: blur(3px);
+}
+
+.door-lock-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.4rem 1rem;
+  text-align: center;
+}
+
+/* Animated concentric rings around the lock icon */
+.door-lock-icon-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+
+.door-lock-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(180, 160, 220, 0.35);
+  animation: lockRingPulse 3s ease-in-out infinite alternate;
+}
+.door-lock-ring--outer {
+  inset: 0;
+  animation-delay: 0s;
+}
+.door-lock-ring--inner {
+  inset: 12px;
+  border-color: rgba(160, 130, 210, 0.5);
+  animation-delay: 0.5s;
+}
+@keyframes lockRingPulse {
+  from { opacity: 0.35; transform: scale(0.97); }
+  to   { opacity: 0.8;  transform: scale(1.03); box-shadow: 0 0 12px rgba(160,120,240,0.25); }
+}
+
+.door-lock-icon {
+  font-size: 1.9rem;
+  filter: drop-shadow(0 0 8px rgba(160, 120, 240, 0.6));
+  animation: lockIconFloat 3s ease-in-out infinite alternate;
+  z-index: 2;
+}
+@keyframes lockIconFloat {
+  from { transform: translateY(0)   scale(1);    filter: drop-shadow(0 0 6px  rgba(160,120,240,0.5)); }
+  to   { transform: translateY(-3px) scale(1.06); filter: drop-shadow(0 0 14px rgba(160,120,240,0.9)); }
+}
+
+.door-lock-title {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.38em;
+  color: rgba(200, 185, 240, 0.75);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.door-lock-hint {
+  font-size: 0.68rem;
+  font-style: italic;
+  color: rgba(180, 165, 210, 0.5);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 180px;
+}
+
+/* Floating rune row inside lock overlay */
+.door-lock-runes {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+.door-lock-rune {
+  font-size: 0.85rem;
+  color: rgba(160, 120, 240, 0.45);
+  animation: lockRuneFade 3s ease-in-out infinite alternate;
+}
+@keyframes lockRuneFade {
+  from { opacity: 0.2; transform: translateY(0); }
+  to   { opacity: 0.7; transform: translateY(-2px); filter: drop-shadow(0 0 3px rgba(160,120,240,0.5)); }
+}

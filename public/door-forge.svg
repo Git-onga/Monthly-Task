@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" width="400" height="560">
+  <defs>
+    <radialGradient id="fg-bg" cx="50%" cy="90%" r="80%">
+      <stop offset="0%" stop-color="#2a0800"/>
+      <stop offset="50%" stop-color="#1a0400"/>
+      <stop offset="100%" stop-color="#0d0200"/>
+    </radialGradient>
+    <radialGradient id="fg-fire" cx="50%" cy="100%" r="60%">
+      <stop offset="0%" stop-color="#ff6b00" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#cc3300" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ff6b00" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fg-glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="fg-blur"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+  <rect width="400" height="560" fill="url(#fg-bg)"/>
+  <ellipse cx="200" cy="530" rx="220" ry="90" fill="url(#fg-fire)" filter="url(#fg-blur)"/>
+  <!-- Anvil silhouette -->
+  <path d="M120,510 L120,480 Q120,465 140,462 L260,462 Q280,465 280,480 L280,510 Z" fill="#1a0800" stroke="#5a2200" stroke-width="2" opacity="0.8"/>
+  <ellipse cx="200" cy="462" rx="70" ry="18" fill="#1a0800" stroke="#5a2200" stroke-width="2" opacity="0.8"/>
+  <!-- Door frame — iron-banded -->
+  <path d="M72,490 L72,175 Q72,95 200,95 Q328,95 328,175 L328,490 Z" fill="#1a0600" stroke="#5a2000" stroke-width="3"/>
+  <path d="M60,490 L60,172 Q60,80 200,80 Q340,80 340,172 L340,490" fill="none" stroke="#cc4400" stroke-width="3.5"/>
+  <!-- Iron door planks -->
+  <rect x="72" y="175" width="256" height="315" fill="#1e0800"/>
+  <g fill="#160600" stroke="#2a0e00" stroke-width="1.5">
+    <line x1="72" y1="210" x2="328" y2="210"/>
+    <line x1="72" y1="260" x2="328" y2="260"/>
+    <line x1="72" y1="310" x2="328" y2="310"/>
+    <line x1="72" y1="360" x2="328" y2="360"/>
+    <line x1="72" y1="410" x2="328" y2="410"/>
+    <line x1="72" y1="455" x2="328" y2="455"/>
+    <line x1="200" y1="175" x2="200" y2="490"/>
+  </g>
+  <!-- Iron rivets -->
+  <g fill="#3a1200">
+    <circle cx="90" cy="193" r="5"/> <circle cx="310" cy="193" r="5"/>
+    <circle cx="90" cy="240" r="5"/> <circle cx="310" cy="240" r="5"/>
+    <circle cx="90" cy="340" r="5"/> <circle cx="310" cy="340" r="5"/>
+    <circle cx="90" cy="440" r="5"/> <circle cx="310" cy="440" r="5"/>
+    <circle cx="200" cy="193" r="5"/>
+    <circle cx="200" cy="340" r="5"/>
+    <circle cx="200" cy="440" r="5"/>
+  </g>
+  <!-- Rune circle on door -->
+  <g transform="translate(200,320)" filter="url(#fg-glow)" opacity="0.75">
+    <circle r="58" fill="none" stroke="#ff6b00" stroke-width="1.5"/>
+    <circle r="44" fill="none" stroke="#cc4400" stroke-width="1" opacity="0.6"/>
+    <!-- Mjolnir / hammer symbol -->
+    <rect x="-6" y="-40" width="12" height="50" rx="3" fill="none" stroke="#ff6b00" stroke-width="2.5"/>
+    <rect x="-22" y="-40" width="44" height="14" rx="4" fill="none" stroke="#ff6b00" stroke-width="2.5"/>
+    <!-- Outer rune marks -->
+    <line x1="0" y1="-62" x2="0" y2="-52"/>
+    <line x1="54" y1="18" x2="44" y2="12"/>
+    <line x1="-54" y1="18" x2="-44" y2="12"/>
+    <circle cx="0" cy="18" r="4" fill="#ff6b00" opacity="0.9"/>
+  </g>
+  <!-- Glowing cracks in door -->
+  <g stroke="#ff4400" stroke-width="1" opacity="0.4" filter="url(#fg-glow)">
+    <path d="M130,380 Q138,395 128,410"/>
+    <path d="M260,250 Q268,265 258,278"/>
+    <path d="M180,450 Q188,458 182,468"/>
+  </g>
+  <!-- Handle -->
+  <g transform="translate(200,445)" filter="url(#fg-glow)">
+    <rect x="-18" y="-8" width="36" height="16" rx="8" fill="#1a0800" stroke="#ff6b00" stroke-width="2"/>
+    <circle r="5" fill="#ff6b00" opacity="0.8"/>
+  </g>
+  <!-- Arch glow -->
+  <path d="M72,175 Q72,95 200,95 Q328,95 328,175 Z" fill="#1e0800"/>
+  <path d="M88,178 Q88,110 200,110 Q312,110 312,178 Z" fill="#ff4400" opacity="0.07" filter="url(#fg-blur)"/>
+  <!-- Keystone -->
+  <path d="M186,95 L200,78 L214,95 Z" fill="#2a0e00" stroke="#ff6b00" stroke-width="1.5"/>
+  <circle cx="200" cy="74" r="7" fill="#ff6b00" opacity="0.8" filter="url(#fg-glow)"/>
+  <!-- Fire licking bottom of door -->
+  <g filter="url(#fg-glow)" opacity="0.5">
+    <path d="M140,490 Q155,470 165,490" fill="#ff6b00"/>
+    <path d="M175,490 Q190,460 200,490" fill="#cc4400"/>
+    <path d="M210,490 Q225,468 235,490" fill="#ff6b00"/>
+    <path d="M245,490 Q258,475 268,490" fill="#cc4400"/>
+  </g>
+</svg>
